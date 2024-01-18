@@ -7,6 +7,7 @@ using namespace std;
 int sudoku[9][9];
 int beirt[3][4];
 int sor, oszlop;
+
 const int meret = 9 * 9;
 
 int resztabla(int oszlop, int sor) {
@@ -30,7 +31,7 @@ bool van(int resztabla, int szam) {
 	switch (resztabla) {
 	case 1:
 		for (int i = 0; i < 3; i++) {
-			for (int j = 0; j < 0; j++) {
+			for (int j = 0; j < 3; j++) {
 				if (sudoku[j][i] == szam) {
 					return true;
 				}
@@ -55,36 +56,92 @@ bool van(int resztabla, int szam) {
 			}
 		}
 		break;
+	case 4:
+		for (int i = 4; i < 6; i++) {
+			for (int j = 0; j < 3; j++) {
+				if (sudoku[j][i] == szam) {
+					return true;
+				}
+			}
+		}
+		break;
+	case 5:
+		for (int i = 4; i < 6; i++) {
+			for (int j = 4; j < 6; j++) {
+				if (sudoku[j][i] == szam) {
+					return true;
+				}
+			}
+		}
+		break;
+	case 6:
+		for (int i = 4; i < 6; i++) {
+			for (int j = 7; j < 9; j++) {
+				if (sudoku[j][i] == szam) {
+					return true;
+				}
+			}
+		}
+		break;
+	case 7:
+		for (int i = 7; i < 9; i++) {
+			for (int j = 1; j < 3; j++) {
+				if (sudoku[j][i] == szam) {
+					return true;
+				}
+			}
+		}
+		break;
+	case 8:
+		for (int i = 7; i < 9; i++) {
+			for (int j = 4; j < 6; j++) {
+				if (sudoku[j][i] == szam) {
+					return true;
+				}
+			}
+		}
+		break;
+	case 9:
+		for (int i = 7; i < 9; i++) {
+			for (int j = 7; j < 9; j++) {
+				if (sudoku[j][i] == szam) {
+					return true;
+				}
+			}
+		}
+		break;
 	}
 }
-	
-// folyt
-	
 
 string vizsgal(int szam, int oszlop, int sor) {
-	if (sudoku[oszlop][szam] != 0) {
-		return "A helyet mï¿½r kitï¿½ltï¿½ttï¿½k\n";
+	oszlop = oszlop - 1;
+	sor = sor - 1;
+
+	if (sudoku[oszlop][sor] != 0) {
+		return "A helyet már kitöltötték\n\n";
 	} 
 
 	for (int i = 0; i < 9; i++) {
 		if (sudoku[i][sor] == szam) {
-			return "Az adott sorban mï¿½r szerepel a szï¿½m\n";
+			return "Az adott sorban már szerepel a szám\n\n";
 		}
 	}
 
 	for (int i = 0; i < 9; i++) {
 		if (sudoku[oszlop][i] == szam) {
-			return "Az adott oszlopban mï¿½r szerepel a szï¿½m\n";
+			return "Az adott oszlopban már szerepel a szám\n\n";
 		}
 	}
 
 	if (van(resztabla(oszlop, sor), szam)) {
-		return "Az adott rï¿½sztï¿½blï¿½zatban mï¿½r szerepel a szï¿½m\n";
+		return "Az adott résztáblázatban már szerepel a szám\n\n";
 	}
+
+	return "A lépés megtehetö\n\n";
 }
 
 void f1_2() {
-	cout << "1. feladat\nAdja meg a bemeneti fï¿½jl nevï¿½t! ";
+	cout << "1. feladat\nAdja meg a bemeneti fájl nevét! ";
 	string input; cin >> input;
 	ifstream f;
 	f.open(input);
@@ -107,8 +164,8 @@ void f1_2() {
 
 	f.close();
 
-	cout << "Adja meg egy sor szï¿½mï¿½t! "; cin >> sor;
-	cout << "Adja meg egy oszlop szï¿½mï¿½t! "; cin >> oszlop; cout << "\n";
+	cout << "Adja meg egy sor számát! "; cin >> sor;
+	cout << "Adja meg egy oszlop számát! "; cin >> oszlop; cout << "\n";
 
 	sor = sor - 1;
 	oszlop = oszlop - 1;
@@ -118,16 +175,16 @@ void f3() {
 	cout << "3. feladat\n";
 
 	if (sudoku[oszlop][sor] == 0) {
-		cout << "Az adott helyet mï¿½g nem tï¿½ltï¿½ttï¿½k ki.\n";
+		cout << "Az adott helyet még nem töltötték ki.\n";
 	} else {
-		cout << "Az adott helyen szereplï¿½ szï¿½m: " << sudoku[oszlop][sor] << "\n";
+		cout << "Az adott helyen szereplö szám: " << sudoku[oszlop][sor] << "\n";
 	}
 
-	cout << "A hely a(z) " << resztabla(oszlop, sor) << " rï¿½sztï¿½lï¿½hoz tartozik.\n\n";
+	cout << "A hely a(z) " << resztabla(oszlop, sor) << " résztálához tartozik.\n\n";
 }
 
 void f4() {
-	cout << "4. feladat\nAz ï¿½res helyek arï¿½nya: ";
+	cout << "4. feladat\nAz üres helyek aránya: ";
 
 	int nulla = 0;
 	for (int i = 0; i < 9; i++) {
@@ -145,8 +202,8 @@ void f5() {
 	cout << "5. feladat\n";
 
 	for (int i = 0; i < 4; i++) {
-		cout << "A kivï¿½lasztott sor: " << beirt[1][i] << " oszlop: " << beirt[2][i] << " a szï¿½m: " << beirt[0][i] << endl;
-
+		cout << "A kiválasztott sor: " << beirt[1][i] << " oszlop: " << beirt[2][i] << " a szám: " << beirt[0][i] << endl;
+		cout << vizsgal(beirt[0][i], beirt[2][i], beirt[1][i]);
 	}
 }
 
