@@ -1,0 +1,63 @@
+2csapatok
+SELECT csapat.nev
+FROM csapat 
+WHERE csapat.nev LIKE "#%";
+
+3csakegy
+SELECT feladatsor.nevado
+FROM feladatsor
+WHERE feladatsor.nevado LIKE "% %"
+AND feladatsor.nevado NOT LIKE "% % %";
+
+4szilveszter
+SELECT feladatsor.nevado
+FROM feladatsor
+WHERE feladatsor.kituzes <= "2018-12-31"
+AND feladatsor.hatarido >= "2019-01-01";
+
+5eredmeny
+SELECT csapat.nev, SUM(megoldas.pontszam)
+FROM megoldas, csapat
+WHERE megoldas.csapatid = csapat.id
+GROUP BY megoldas.csapatid
+ORDER BY 2 DESC;
+
+6nem150
+SELECT feladatsor.nevado, feladatsor.ag, SUM(feladat.pontszam)
+FROM feladatsor, feladat
+WHERE feladatsor.id = feladat.feladatsorid
+GROUP BY feladatsor.id
+HAVING SUM(feladat.pontszam) <> 150;
+
+7hibatlan
+SELECT DISTINCT csapat.nev
+FROM csapat, megoldas, feladat
+WHERE csapat.id = megoldas.csapatid
+AND megoldas.feladatid = feladat.id
+AND megoldas.pontszam = feladat.pontszam;
+
+8#win
+SELECT feladatsor.nevado, COUNT(*)
+FROM feladatsor, feladat
+WHERE feladatsor.id = feladat.feladatsorid
+AND feladat.id NOT IN (
+  SELECT feladatid
+  FROM megoldas, csapat
+  WHERE megoldas.csapatid = csapat.id
+  AND csapat.nev = "#win"
+)
+GROUP BY feladatsor.nevado;
+
+9ugyanabban
+SELECT feladatsor.nevado
+FROM feladatsor
+WHERE feladatsor.ag = "irodalom"
+AND MONTH(feladatsor.kituzes) = MONTH(feladatsor.hatarido);
+
+10legrovidebb
+SELECT feladatsor.nevado
+FROM feladatsor
+ORDER BY Datediff(feladatsor.hatarido, feladatsor.kituzes)
+LIMIT 1;
+
+11rogton
