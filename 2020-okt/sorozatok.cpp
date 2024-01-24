@@ -28,6 +28,12 @@ struct datum_t {
     }
 };
 
+struct sum {
+    string cim;
+    int vetit;
+    int epizod;
+} sum[1000];
+
 struct sorozatok {
     datum_t datum;
     bool hasDatum;
@@ -36,7 +42,6 @@ struct sorozatok {
     int hossz;
     bool nezett;
 }sorozat[400];
-
 
 int N;
 
@@ -142,14 +147,48 @@ void f7() {
     cout << "Adja meg a hét napját (pédául cs)! Nap= ";
     string nap;
     cin >> nap;
-    /*
+    bool egyiksem = true;
+    
     for (int i = 0; i < N; i++) {
-        if (hetnapja() == nap) {
-
+        if (sorozat[i].hasDatum && hetnapja(sorozat[i].datum.ev, sorozat[i].datum.honap, sorozat[i].datum.nap) == nap) {
+            string kiirt = sorozat[i].cim;
+            cout << sorozat[i].cim << endl;
+            egyiksem = false;
+            while (sorozat[i].cim == kiirt) i++;
         }
     }
-    folyt
-    */
+
+    if (egyiksem) {
+        cout << "Az adott napon nem kerül adásba sorozat.\n";
+    }
+
+    cout << endl;
+}
+
+void f8() {
+    ofstream f;
+    f.open("summa.txt");
+
+    for (int i = 0; i < N; i++) {
+        sum[i].cim = sorozat[i].cim;
+        int j = i;
+        while (sum[i].cim == sorozat[j].cim) {
+            sum[i].vetit += sorozat[i].hossz;
+            sum[i].epizod++;
+            j++;
+        }
+    }
+
+    for (int i = 0; i < N; i++) {
+        int j = i;
+        f << sum[i].cim << " " << sum[i].vetit << " " << sum[i].epizod << endl;
+        while (sum[i].cim == sum[j].cim) {
+            j++;
+        }
+        i = j;
+    }
+    
+    f.close();
 }
 
 int main() {
@@ -161,4 +200,5 @@ int main() {
     f4();
     f5();
     f7();
+    f8();
 }
