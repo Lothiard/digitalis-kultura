@@ -1,0 +1,193 @@
+	body {
+	    padding: 0px;
+	    background-color: #f8f8f8;
+	    margin: 0px;
+	    background-image: url(../img/hatter.png);
+	    background-repeat: repeat-y;
+	    font-family: Verdana;
+	}
+	body p {
+	    text-align: right;
+	    padding: 8px 100px 0px 0px;
+	    margin: 0px;
+	}
+	body p a {
+	    text-decoration: none;
+	    font-size: 12px;
+	    font-style: italic;
+	    color: rgb(80,80,80);
+	}
+	header {
+	    position: absolute;
+	    width: 96%;
+	    top: 0px;
+	    left: 1%;
+	    margin-top: 30px;
+	    background-color: #ffffff;
+	    padding: 5px;
+	    border-width: 1px 0px 1px 0px;
+	    border-style: dotted;
+	    border-color: rgb(100,100,100);
+	    height: 86px;
+	    font-family: Arial;
+	}
+	header img { 
+	    float: left;
+	    margin: 1px 20px;
+	    height: 86px;
+	}
+	header h1 {
+	    text-align: center;
+	    vertical-align: bottom;
+	    margin: 10px 0px 0px 0px;
+	    padding: 6px 0px 4px 0px;
+	    background-color: rgb(240,240,240);
+	    color: rgb(180,180,180);
+	    border-width: 1px 0px 0px 0px;
+	    border-style: dotted;
+	    border-color: rgb(180,180,180);
+	    height: 34px;
+	}
+	header p {
+	    margin: 0px 0px;
+	    padding: 4px 100px 0px 100px;
+	    font-size: 16px;
+	    color: rgb(240,240,240);
+	    text-align: right;
+	    font-style: italic;
+	    background-color: rgb(180,180,180);
+	    height: 20px;
+	}
+	nav {
+	    width: 20%;
+	    height: auto;
+	    position: absolute;
+	    top: 130px;
+	}
+	nav ul {
+	    list-style-type: none;
+	    padding: 0px 10px 0px 0px;
+	    margin: 20px 0px 0px 0px;
+	}
+	nav ul li {
+	    margin: 4px;
+	    padding: 0px;
+	    font-weight: bold;
+	}
+	nav ul li a {
+	    color: rgb(240,240,240);
+	    text-decoration: none;
+	    padding: 10px 20px;
+	    background-color: rgb(180,180,180);
+	    display: block;
+	    border-width: 1px 0px;
+	    border-style: solid;
+	    border-color: rgb(240,240,240);
+	}
+	nav ul li a:hover {
+	    background-color: rgb(240,240,240);
+	    color: rgb(180,180,180);
+	}
+	nav ul li ul {
+	    margin: 0px 0px 0px 10px;
+	}
+	nav ul li li {
+	    padding: 0px 6px;
+	    margin-top: 2px;
+	    list-style: inside;
+	    list-style-type: square;
+	    background-color: rgb(240,240,240);
+	    color: rgb(180,180,180);
+	    font-size: 12pt;
+	}
+	nav ul li li a {
+	    background-color: rgb(240,240,240);
+	    color: rgb(180,180,180);
+	    text-decoration: none;
+	    padding: 0px 5px;
+	    display: inline;
+	}
+	nav ul li li a:hover {
+	    color: rgb(100,100,100);
+	}
+	div.lap {
+	    position: absolute;
+	    top: 146px;
+	    left: 25%;
+	    width: 60%;
+	    padding: 30px 10px 40px 60px;
+	    color: rgb(100,100,100);
+	    background-color: rgb(255,255,255);
+	    border-width: 1px;
+	    border-style: dotted;
+	    border-color: rgb(100,100,100);
+
+	}
+	div.lap span {
+	    color: rgb(255, 100, 0);
+	    font-family: Arial;
+	}
+	div.lap h1 {
+	    margin-top: 40px;
+	    text-align: center;
+	    font-size: 24px;
+	    font-weight: normal;
+	}
+	div.lap p {
+	    text-align: left;
+	}
+	div.lap table {
+	    font-size: 12px;
+	}
+	div.lap table thead th {
+	    text-align: center;
+	    border-width: 0px 0px 1px 0px;
+	    border-style: solid;
+	    border-color: rgb(100,100,100);
+	}
+	div.lap table tfoot th {
+	    text-align: center;
+	    font-size: 8px;
+	    font-weight: bolder;
+	    border-width: 0px 0px 1px 0px;
+	    border-style: solid;
+	    border-color: rgb(100,100,100);
+	    padding: 0px 10px;
+	}
+	div.lap table tbody th {
+	    padding: 0px 10px;
+	    text-align: left;
+	    font-style: italic;
+	    border-width: 0px 0px 1px 0px;
+	    border-style: dotted;
+	    border-color: rgb(100,100,100);
+	}
+	div.lap table tbody td {
+	    padding: 0px 12px;
+	    border-width: 0px 0px 1px 0px;
+	    border-style: dotted	;
+	    border-color: rgb(100,100,100);
+	}
+	div.lap img {
+	    width: 400px;
+	    float: right;
+	    border: 1px dotted rgb(180,180,180);
+	}
+	div.kepek {
+	    float: right;
+	    padding: 6px 4px;
+	    margin: 0px;
+	    background-color: rgb(240,240,240);
+	    border-width: 0px 1px;
+	    border-style: solid;
+	    border-color: rgb(100,100,100);
+	}
+	div.kepek img {
+	    width: auto;
+	    float: none;
+	    display: block;
+	    margin-top: 4px; 
+	    border-color: rgb(255,220,0);
+	    border-style: solid;
+	    border-width: 0px 0px 5px 0px;
+	}
