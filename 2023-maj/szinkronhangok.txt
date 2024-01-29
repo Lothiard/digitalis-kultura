@@ -1,0 +1,62 @@
+2heltai
+SELECT film.cim, film.eredeti
+FROM film
+WHERE film.magyarszoveg = "Heltai Olga";
+
+3szinkrend
+SELECT DISTINCT film.rendezo, film.szinkronrendezo
+FROM film
+WHERE film.ev > 2000;
+
+4szoveg
+SELECT film.magyarszoveg, film.cim
+FROM film
+WHERE film.rendezo = "Christopher Nolan"
+AND film.studio = "Mafilm Audio Kft."
+ORDER BY 1;
+
+5anger
+SELECT film.cim, film.eredeti, szinkron.szinesz, szinkron.szerep
+FROM film, szinkron
+WHERE film.filmaz = szinkron.filmaz
+AND szinkron.hang = "Anger Zsolt";
+
+6mennyi
+SELECT film.cim, COUNT(szinkron.filmaz)
+FROM film, szinkron
+WHERE film.filmaz = szinkron.filmaz
+GROUP BY 1;
+
+7rab
+SELECT DISTINCT szinkron.szerep, szinkron.szinesz, szinkron.hang
+FROM szinkron, film
+WHERE szinkron.filmaz = film.filmaz
+AND szinkron.szerep LIKE "rab%"
+OR szinkron.szerep LIKE "% rab%";
+
+8rendszin
+SELECT DISTINCT film.rendezo AS "Színész-rendező"
+FROM film, szinkron
+WHERE film.filmaz = szinkron.filmaz
+AND film.rendezo = szinkron.szinesz;
+
+9pap
+SELECT szinkron.hang, film.cim
+FROM film, szinkron
+WHERE film.filmaz = szinkron.filmaz
+AND film.cim IN
+	(SELECT film.cim
+    FROM film, szinkron
+    WHERE film.filmaz = szinkron.filmaz
+    AND szinkron.hang = "Pap Kati")
+AND szinkron.hang <> "Pap Kati"
+ORDER BY 2;
+
+10harom
+SELECT szinkron.szinesz, szinkron.hang, COUNT(szinkron.szinkid)
+FROM szinkron
+GROUP BY 1
+HAVING COUNT(szinkron.szinkid) >= 3
+ORDER BY 3 DESC;
+
+11egyev
