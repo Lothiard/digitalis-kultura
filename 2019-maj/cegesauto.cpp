@@ -35,7 +35,7 @@ void f2() {
 
     for (int i = N; i > 0; i--) {
         if (parkol[i].kibe == 0) {
-            cout << parkol[i].nap << ". nap rendszÃ¡m: " << parkol[i].rendszam << endl;
+            cout << parkol[i].nap << ". nap rendszám: " << parkol[i].rendszam << endl;
             break;
         }
     }
@@ -89,7 +89,7 @@ void f4() {
         }
     }
 
-    cout << "A hÃ³nap vÃ©gÃ©n " << nincsitt << " autÃ³t nem hoztak vissza.\n";
+    cout << "A hónap végén " << nincsitt << " autót nem hoztak vissza.\n";
 }
 
 void f5() {
@@ -145,7 +145,51 @@ void f6() {
         }
     }
 
-    cout << "Leghosszabb Ãºt: " << max << " km, szemÃ©ly: " << szemely << endl;
+    cout << "Leghosszabb út: " << max << " km, személy: " << szemely << endl;
+}
+
+void f7() {
+    cout << "7. feladat\nRendszám: ";
+    ofstream f;
+    string input;
+    cin >> input;
+
+    string output = input + "_menetlevel.txt";
+
+    f.open(output);
+
+    int i = 0;
+    while(i < N) {
+        bool indult = false;
+        while (!indult) {
+            if (input == parkol[i].rendszam && parkol[i].kibe == 0) {
+                f << parkol[i].azon << "\t" << parkol[i].nap << ". " << parkol[i].ora << "\t" << parkol[i].km << " km \t";
+                indult = true;
+                break;
+            } else {
+                i++;
+            }
+        }
+
+        int j = i + 1;
+        bool jott = false;
+        while (!jott && j < N) {
+            if (input == parkol[j].rendszam && parkol[j].kibe == 1) {
+                f << parkol[j].nap << ". " << parkol[j].ora << "\t" << parkol[j].km << " km\n";
+                jott = true;
+                break;
+            } else {
+                j++;
+            }
+        }
+
+        if (j >= N) break;
+
+        i = j + 1;
+    }
+
+    f.close();
+    cout << "Menetlevél kész.";
 }
 
 int main() {
@@ -157,4 +201,5 @@ int main() {
     f4();
     f5();
     f6();
+    f7();
 }
