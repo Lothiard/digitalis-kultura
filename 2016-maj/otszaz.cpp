@@ -30,7 +30,7 @@ int ertek(int darab) {
 	
 	for (int i = 0; i < darab; i++) {
 		fizetendo += egysegar;
-		if (egysegar > 450) {
+		if (egysegar >= 450) {
 			egysegar -= 50;
 		}
 	}
@@ -197,7 +197,7 @@ void f8() {
 	for (int i = 0; i < N; i++) {
 		for (int j = 0; j < 20; j++) {
 			darab[j] = 0;
-			cikk[i] = "";
+			cikk[j] = '\0';
 		}
 
 		index = 0;
@@ -205,7 +205,7 @@ void f8() {
 		for (int j = i; j < N; j++) {
 			if (penztar[j] == "F") {
 				kezdes = i;
-				i = j + 1;
+				i = j;
 				break;
 			}
 		}
@@ -218,7 +218,7 @@ void f8() {
 			}
 
 			for (int k = 0; k < 20; k++) {
-				if (cikk[j] == penztar[j]) {
+				if (cikk[k] == penztar[j]) {
 					bennevan = true;
 				}
 			}
